@@ -46,6 +46,7 @@
     "@types/serialize-javascript": "^5.0.0",
     "@types/webpack-env": "^1.16.0",
     "razzle": "^3.1.8",
+    "razzle-plugin-purgecss": "^1.0.1",
     "razzle-plugin-scss": "^3.3.9",
     "redux-devtools-extension": "^2.13.8",
     "typescript": "^3.9.7"
