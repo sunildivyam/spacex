@@ -27,6 +27,7 @@
     "@types/react-router-dom": "^5.1.7",
     "@types/webpack-env": "^1.16.0",
     "razzle": "^3.1.8",
+    "razzle-plugin-scss": "^3.3.9",
     "typescript": "^3.9.7"
   }
 }
