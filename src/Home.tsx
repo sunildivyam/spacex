@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import logo from './react.svg';
 import { Helmet } from 'react-helmet';
+import { Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 import './Home.scss';
 import { useDispatch, useSelector } from 'react-redux';
@@ -37,6 +40,7 @@ export default function Home() {
           To get started, edit <code>src/App.tsx</code> or{' '}
           <code>src/Home.tsx</code> and save to reload.
         </p>
+        <Button>Test Button <FontAwesomeIcon icon={faUser}/></Button>
         <ul className="Home-resources">
           <li>
             <a href="https://github.com/jaredpalmer/razzle">Docs</a>
