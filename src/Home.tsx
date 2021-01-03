@@ -1,13 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './react.svg';
 import { Helmet } from 'react-helmet';
 
 import './Home.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { getLaunchesAndDispatch } from './services';
+import { AppState } from './store';
+import { ILaunch } from './models';
 
-class Home extends React.Component<{}, {}> {
-  public render() {
-    return (
-      <div className="Home">
+export default function Home() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getLaunchesAndDispatch());
+  }, [dispatch]);
+
+  const launchesState = useSelector((state: AppState) => state.launches);
+  
+  const launchItems = launchesState.launches.map((launch: ILaunch) => (
+    <div key={launch.id}>
+      <h1>Hello: {launch.name}#{launch.flightNumber}</h1>
+      <p>{launch.launchYear}</p>
+    </div>
+  ));
+
+  return (
+    <div className="Home">
         <Helmet>
           <title>Welcome to Razzle Boilerplate</title>
           <meta name='description' content='Web site created using create-razzle-app'/>
@@ -31,9 +48,8 @@ class Home extends React.Component<{}, {}> {
             <a href="https://palmer.chat">Community Slack</a>
           </li>
         </ul>
-      </div>
-    );
-  }
-}
 
-export default Home;
+        <div>{launchItems}</div>
+      </div>
+  );
+}
