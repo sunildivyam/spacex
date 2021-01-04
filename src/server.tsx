@@ -4,7 +4,7 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import serialize from 'serialize-javascript';
-import { App } from './components';
+import { App } from './components/App/App';
 import { configureStore, AppState } from './store';
 import { Provider } from 'react-redux';
 import { fetchLaunches } from './services';
