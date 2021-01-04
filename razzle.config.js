@@ -1,14 +1,11 @@
 const path = require('path');
+const razzleHeroku = require('razzle-heroku');
+
 module.exports = {
   modifyWebpackConfig(opts) {
-    const config = opts.webpackConfig;
+    let config = opts.webpackConfig;
 
-    if (opts.env.target === 'node' && !opts.env.dev) {
-      config.entry = path.resolve(__dirname, './src/server.tsx');
-      config.output.filename = 'server.bundle.js';
-      config.output.path = path.resolve(__dirname, './server/build');
-      config.output.libraryTarget = 'commonjs2';
-    }
+    config = razzleHeroku(config, { target: opts.env.target, dev: opts.env.dev }, opts.webpackObject);
 
     return config;
   },
