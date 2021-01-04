@@ -8,7 +8,7 @@ import { App } from './components';
 import { configureStore, AppState } from './store';
 import { Provider } from 'react-redux';
 import { fetchLaunches } from './services';
-import { defaultFilters, IFilters, IProgress } from './models';
+import { defaultFilters, IFilters, ILaunches, IProgress } from './models';
 import { setAxiosDefaults } from './services';
 
 setAxiosDefaults();
@@ -76,7 +76,17 @@ const server = express()
       loading: false
     };
 
-    fetchLaunches(filters).then((launches) => {
+    fetchLaunches(filters)
+    .then((launches) => {
+      const preloadedState: AppState = { launches, filters, progress };
+      res.send(preRenderApp(preloadedState, context, req.url));
+    })
+    .catch(er => {
+      const launches:ILaunches = {
+        launches: [],
+        totalCount: 0
+      };
+      progress.error = {statusCode: er.code, message: er.message};
       const preloadedState: AppState = { launches, filters, progress };
 
       res.send(preRenderApp(preloadedState, context, req.url));

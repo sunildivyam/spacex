@@ -31,7 +31,7 @@ export const YearFilter: React.FC = () => {
   return (
     <Container fluid className="YearFilter" as="section">
       <Row>
-        {filters.years.map(year => <Col xs="6" as="section" key={year}>
+        {filters.years.map(year => <Col xs="6" as="section" key={year} className="YearButtonSection">
           <ButtonGroup toggle className="mb-2">
             <ToggleButton
               className="YearButton"

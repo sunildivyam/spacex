@@ -10,7 +10,7 @@ interface IProps {
 
 export const Error: React.FC<IProps> = ({ error }: IProps) => {
   if (error) {
-    return <Card>
+    return <Card className="Error">
       <Card.Header><Card.Title>Error</Card.Title></Card.Header>
       <Card.Body>
         <Card.Title>{error.statusCode}</Card.Title>

@@ -25,8 +25,8 @@ export const LaunchesPage: React.FC = () => {
     <Container fluid className="LaunchesPage" data-testid="LaunchesPage" as="section">
       <Row as="section"><Col as="h1">SpaceX Launch Programs</Col></Row>
       <Row as="section">
-        <Col sm="12" md="3" as="section"><LaunchFilters></LaunchFilters></Col>
-        <Col sm="12" md="9" as="section">
+        <Col xs="12" sm="6" md="3" as="section"><LaunchFilters></LaunchFilters></Col>
+        <Col xs="12" sm="6" md="9" as="section">
           <LaunchList></LaunchList>
         </Col>
       </Row>

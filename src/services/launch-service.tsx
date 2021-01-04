@@ -11,7 +11,9 @@ export function setAxiosDefaults() {
 function getParams(filters: IFilters) {
     const { selectedYear, successfulLaunch, successfulLanding } = filters;
     const params: any = {
-        id: true
+        id: true,
+        limit: 100,
+        filter: ''
     };
     if (selectedYear) {
         params['launch_year'] = selectedYear;
