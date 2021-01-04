@@ -24,7 +24,7 @@ function getParams(filters: IFilters) {
     }
 
     if (successfulLanding) {
-        params['landing_success'] = successfulLanding;
+        params['land_success'] = successfulLanding;
     }
     
     return params;
