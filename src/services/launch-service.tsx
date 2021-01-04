@@ -3,7 +3,7 @@ import { getLaunchesAction, IGetLaunchsAction } from '../store';
 import axios, { AxiosResponse } from 'axios';
 import { ILaunch, ILaunches, Launch } from '../models';
 
-export const getLaunches = () => {
+export const fetchLaunches = () => {
     const LAUNCHES_URL = 'https://api.spacexdata.com/v3/launches?id=true';
 
     return new Promise<ILaunches>((resolve, reject) => {
@@ -25,10 +25,9 @@ export const getLaunches = () => {
     })
 }
 
-
-export const getLaunchesAndDispatch = () => {
+export const getLaunches = () => {
     return function (dispatch: Dispatch<IGetLaunchsAction>) {
-        getLaunches()
+        fetchLaunches()
             .then((launches: ILaunches) => {
                 dispatch(getLaunchesAction(launches));
                 return launches;

@@ -4,10 +4,10 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import serialize from 'serialize-javascript';
-import App from './App';
+import { App } from './components';
 import { configureStore, AppState } from './store';
 import { Provider, useSelector } from 'react-redux';
-import { getLaunches } from './services';
+import { fetchLaunches } from './services';
 
 let assets: any;
 
@@ -65,7 +65,7 @@ const server = express()
   .disable('x-powered-by')
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR!))
   .get('/*', (req: express.Request, res: express.Response) => {
-    getLaunches().then((launches) => {
+    fetchLaunches().then((launches) => {
       const context = {};
       const preloadedState = {launches}; // launches from API call
 

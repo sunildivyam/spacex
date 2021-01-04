@@ -3,7 +3,7 @@ import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
-import App from './App';
+import { App } from './components';
 import { configureStore } from './store';
 
 declare global {
@@ -11,26 +11,24 @@ declare global {
     __PRELOADED_STATE__:any;
   }
 }
-console.log(window.__PRELOADED_STATE__);
-const store = configureStore(window.__PRELOADED_STATE__);
 
-hydrate(
+const store = configureStore(window.__PRELOADED_STATE__);
+const app = 
   <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </Provider>,
+  </Provider>;
+
+hydrate(
+  app,
   document.getElementById('root')
 );
 
 if (module.hot) {
-  module.hot.accept('./App', () => {
+  module.hot.accept('./components/App/App', () => {
     hydrate(
-      <Provider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </Provider>,
+      app,
       document.getElementById('root')
     );
   });

@@ -7,14 +7,14 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 import './Home.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { getLaunchesAndDispatch } from './services';
-import { AppState } from './store';
-import { ILaunch } from './models';
+import { getLaunches } from '../../services';
+import { AppState } from '../../store';
+import { ILaunch } from '../../models';
 
 export default function Home() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getLaunchesAndDispatch());
+    dispatch(getLaunches());
   }, [dispatch]);
 
   const launchesState = useSelector((state: AppState) => state.launches);

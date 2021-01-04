@@ -6,7 +6,7 @@ export interface ILaunch {
     missionIds: Array<string>;
     launchYear?: number;
     successfulLaunch?: boolean;
-    SuccessfulLanding?: boolean;
+    successfulLanding?: boolean;
 }
 
 export interface ILaunches {
@@ -22,7 +22,7 @@ export class Launch implements ILaunch {
     public missionIds: Array<string>;
     public launchYear?: number;
     public successfulLaunch?: boolean;
-    public SuccessfulLanding?: boolean;
+    public successfulLanding?: boolean;
 
     constructor(launch: ILaunch | any) {
         this.id = launch.id || launch._id;
@@ -32,7 +32,7 @@ export class Launch implements ILaunch {
         this.missionIds = launch.missionIds || launch.mission_id;
         this.launchYear = launch.launchYear || launch.launch_year;
         this.successfulLaunch = launch.successfulLaunch || launch.launch_success;
-        this.SuccessfulLanding = launch.SuccessfulLanding || 
+        this.successfulLanding = launch.successfulLanding || 
         (launch.rocket && 
         launch.rocket.first_stage && 
         launch.rocket.first_stage.cores && 
