@@ -14,14 +14,6 @@ export const LaunchList: React.FC = () => {
 
   return (
     <Container fluid className="LaunchList" data-testid="LaunchList" as="section">
-      <Row as="div">
-        {launchesList ? launchesList.map((l: ILaunch) => <Col sm="12" md="4" lg="3" as="div" key={l.id}><LaunchCard launch={l}></LaunchCard></Col>) : null}
-        {launchesList && !launchesList.length && !error && !loading? <Card className="NotFound">
-          <Card.Title>
-            No Records found for the selected filters. Please try other filters or try removing filters.
-          </Card.Title>
-          </Card> : null}
-      </Row>
       <Row>
         <Col xs="12">
           <Loader loading={loading}></Loader>
@@ -29,6 +21,14 @@ export const LaunchList: React.FC = () => {
         <Col xs="12">
           <Error error={error}></Error>
         </Col>
+      </Row>
+      <Row as="div">
+        {launchesList ? launchesList.map((l: ILaunch) => <Col sm="12" md="4" lg="3" as="div" key={l.id}><LaunchCard launch={l}></LaunchCard></Col>) : null}
+        {launchesList && !launchesList.length && !error && !loading? <Card className="NotFound">
+          <Card.Title>
+            No Records found for the selected filters. Please try other filters or try removing filters.
+          </Card.Title>
+          </Card> : null}
       </Row>
     </Container>
   );

@@ -13,7 +13,7 @@ import './App.scss';
 
 export function App() {
   return (
-    <Container fluid>
+    <Container fluid className="AppContainer">
       <Row>
         <Col xs><AppHeader /></Col>
       </Row>

@@ -7,10 +7,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { LaunchList } from '../';
 import LaunchFilters from '../LaunchFilters/LaunchFilters';
 import { useLocation } from 'react-router-dom';
-
-interface IParams {
-  launchYears: string;
-}
+import { Helmet } from 'react-helmet';
 
 export const LaunchesPage: React.FC = () => {
   const location = useLocation();
@@ -21,7 +18,19 @@ export const LaunchesPage: React.FC = () => {
     dispatch(getLaunches(filters));
   }, [location.search]);
 
+  const {selectedYear, successfulLaunch, successfulLanding} = filters;
+
+  const title = `
+  ${successfulLaunch ? 'Successfully Launched': ''}
+  ${successfulLanding ? 'and Landed': ''} 
+  SpaceX Programs 
+  ${selectedYear ? 'of ' + selectedYear : ''}`;
   return (
+    <>
+    <Helmet>
+      <title>{title}</title>
+      <meta name='description' content={'SpaceX Programs Description'}/>
+    </Helmet>
     <Container fluid className="LaunchesPage" data-testid="LaunchesPage" as="section">
       <Row as="section"><Col as="h1">SpaceX Launch Programs</Col></Row>
       <Row as="section">
@@ -31,5 +40,6 @@ export const LaunchesPage: React.FC = () => {
         </Col>
       </Row>
     </Container>
+    </>
   );
 }
