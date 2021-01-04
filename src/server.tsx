@@ -34,13 +34,20 @@ const preRenderApp = (preloadedState: AppState, context: any, url: string) => {
   const finalState = store.getState();
   const helmet = Helmet.renderStatic();
 
+  const {selectedYear, successfulLaunch, successfulLanding} = preloadedState.filters;
+  const title = `
+  ${successfulLaunch ? 'Successfully Launched': ''}
+  ${successfulLanding ? 'and Landed': ''} 
+  SpaceX Programs 
+  ${selectedYear ? 'of ' + selectedYear : ''}`;
+
   const html = (
     `<!doctype html>
       <html lang="en" ${helmet.htmlAttributes.toString()}>
         <head>
             <meta http-equiv="X-UA-Compatible" content="IE=edge" />
             <meta charSet='utf-8' />
-            <title>Razzle TypeScript</title>
+            <title>${title}</title>
             <meta name="viewport" content="width=device-width, initial-scale=1"/>
             ${helmet.meta.toString()} 
             ${helmet.link.toString()} 
