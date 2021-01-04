@@ -1,4 +1,4 @@
-import { ILaunch, ILaunches } from "../models";
+import { ILaunches } from "../../models";
 
 export const GET_LAUNCHES = 'GET_LAUNCHES';
 

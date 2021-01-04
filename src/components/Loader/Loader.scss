@@ -1,0 +1,10 @@
+.backdrop {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    min-height: 100px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(240, 240, 240, 0.8);
+}

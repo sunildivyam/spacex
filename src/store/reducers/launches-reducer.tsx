@@ -1,5 +1,5 @@
-import { ILaunches } from "../models";
-import { GET_LAUNCHES, IGetLaunchsAction } from "./actions";
+import { ILaunches } from "../../models";
+import { GET_LAUNCHES, IGetLaunchsAction } from "../actions";
 
 const initialState: ILaunches = {
     launches: [],

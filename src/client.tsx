@@ -3,35 +3,37 @@ import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
-import App from './App';
-import { configureStore } from './store';
+import { App } from './components';
+import { AppState, configureStore } from './store';
+import { setAxiosDefaults } from './services';
+
+setAxiosDefaults();
 
 declare global {
   interface Window {
-    __PRELOADED_STATE__:any;
+    __PRELOADED_STATE__: AppState;
   }
 }
-console.log(window.__PRELOADED_STATE__);
+
 const store = configureStore(window.__PRELOADED_STATE__);
 
-hydrate(
+const app = 
   <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </Provider>,
+  </Provider>;
+
+hydrate(
+  app,
   document.getElementById('root')
 );
 
 if (module.hot) {
-  module.hot.accept('./App', () => {
+  module.hot.accept('./components/App/App', () => {
     hydrate(
-      <Provider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </Provider>,
+      app,
       document.getElementById('root')
     );
   });
-}
+} 

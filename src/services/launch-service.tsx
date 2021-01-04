@@ -1,16 +1,48 @@
 import { Dispatch } from 'redux';
-import { getLaunchesAction, IGetLaunchsAction } from '../store';
-import axios, { AxiosResponse } from 'axios';
-import { ILaunch, ILaunches, Launch } from '../models';
+import { getLaunchesAction, IGetLaunchsAction, toggleLoading, toggleError, IProgressAction } from '../store';
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { IError, IFilters, ILaunch, ILaunches, Launch } from '../models';
 
-export const getLaunches = () => {
-    const LAUNCHES_URL = 'https://api.spacexdata.com/v3/launches?id=true';
+export function setAxiosDefaults() {
+    axios.defaults.baseURL = 'https://api.spacexdata.com/v3';
+    axios.defaults.headers.get['Content-Type'] = 'application/json';
+}
+
+function getParams(filters: IFilters) {
+    const { selectedYear, successfulLaunch, successfulLanding } = filters;
+    const params: any = {
+        id: true,
+        limit: 100,
+        filter: ''
+    };
+    if (selectedYear) {
+        params['launch_year'] = selectedYear;
+    }
+
+    if (successfulLaunch) {
+        params['launch_success'] = successfulLaunch;
+    }
+
+    if (successfulLanding) {
+        params['landing_success'] = successfulLanding;
+    }
+    
+    return params;
+}
+
+export const fetchLaunches = (filters: IFilters) => {
+    const LAUNCHES_URL = '/launches';
 
     return new Promise<ILaunches>((resolve, reject) => {
-        if (typeof window !== 'undefined' && window.__PRELOADED_STATE__ && window.__PRELOADED_STATE__.launches) {
+        const isPreloadedStateAvailable = (typeof window !== 'undefined' && window.__PRELOADED_STATE__ && window.__PRELOADED_STATE__.launches);
+
+        if (false) {
             resolve(window.__PRELOADED_STATE__.launches);
         } else {
-            axios.get(LAUNCHES_URL)
+            
+            axios.get(LAUNCHES_URL, {
+                params: getParams(filters)
+            })
             .then((res: AxiosResponse) => {
                 const launches: ILaunches = {
                     launches: res.data.map((l: any) => new Launch(l)),
@@ -19,22 +51,32 @@ export const getLaunches = () => {
                 resolve(launches);
             })
             .catch(er => {
-                reject({} as ILaunches);
+                reject(er);
             });
         }
     })
 }
 
+export const getLaunches = (filters: IFilters) => {
+    return function (dispatch: Dispatch<IGetLaunchsAction | IProgressAction>) {
+        dispatch(toggleError(null));
+        dispatch(toggleLoading(true));
 
-export const getLaunchesAndDispatch = () => {
-    return function (dispatch: Dispatch<IGetLaunchsAction>) {
-        getLaunches()
+        fetchLaunches(filters)
             .then((launches: ILaunches) => {
                 dispatch(getLaunchesAction(launches));
+                dispatch(toggleLoading(false));
+
                 return launches;
             })
-            .catch(er => {
-                // TODO: Error Handling
+            .catch((er: AxiosError) => {
+                dispatch(getLaunchesAction({ launches: [], totalCount: 0 }));
+                dispatch(toggleLoading(false));
+                const error: IError = {
+                    statusCode: er.code,
+                    message: er.message
+                }
+                dispatch(toggleError(error));
             });
     };
 };

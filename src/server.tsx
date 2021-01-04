@@ -4,10 +4,14 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import serialize from 'serialize-javascript';
-import App from './App';
+import { App } from './components';
 import { configureStore, AppState } from './store';
-import { Provider, useSelector } from 'react-redux';
-import { getLaunches } from './services';
+import { Provider } from 'react-redux';
+import { fetchLaunches } from './services';
+import { defaultFilters, IFilters, ILaunches, IProgress } from './models';
+import { setAxiosDefaults } from './services';
+
+setAxiosDefaults();
 
 let assets: any;
 
@@ -16,17 +20,17 @@ const syncLoadAssets = () => {
 };
 syncLoadAssets();
 
-const preRenderApp = (preloadedState: any, context: any, url: string) => {
+const preRenderApp = (preloadedState: AppState, context: any, url: string) => {
   const store = configureStore(preloadedState);
 
   const markup = renderToString(
-    <Provider store={ store }>
+    <Provider store={store}>
       <StaticRouter context={context} location={url}>
         <App />
       </StaticRouter>
-    </Provider>  
+    </Provider>
   );
-  
+
   const finalState = store.getState();
   const helmet = Helmet.renderStatic();
 
@@ -42,13 +46,13 @@ const preRenderApp = (preloadedState: any, context: any, url: string) => {
             ${helmet.link.toString()} 
 
             ${assets.client.css
-            ? `<link rel="stylesheet" href="${assets.client.css}">`
-            : ''
-          }
+      ? `<link rel="stylesheet" href="${assets.client.css}">`
+      : ''
+    }
               ${process.env.NODE_ENV === 'production'
-            ? `<script src="${assets.client.js}" defer></script>`
-            : `<script src="${assets.client.js}" defer crossorigin></script>`
-          }
+      ? `<script src="${assets.client.js}" defer></script>`
+      : `<script src="${assets.client.js}" defer crossorigin></script>`
+    }
         </head>
         <body ${helmet.bodyAttributes.toString()}>
             <div id="root">${markup}</div>
@@ -58,16 +62,32 @@ const preRenderApp = (preloadedState: any, context: any, url: string) => {
         </body>
       </html>`);
 
-  return html;    
+  return html;
 }
 
 const server = express()
   .disable('x-powered-by')
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR!))
   .get('/*', (req: express.Request, res: express.Response) => {
-    getLaunches().then((launches) => {
-      const context = {};
-      const preloadedState = {launches}; // launches from API call
+    const context = {};
+    const filters: IFilters = defaultFilters;
+    const progress: IProgress = {
+      error: null,
+      loading: false
+    };
+
+    fetchLaunches(filters)
+    .then((launches) => {
+      const preloadedState: AppState = { launches, filters, progress };
+      res.send(preRenderApp(preloadedState, context, req.url));
+    })
+    .catch(er => {
+      const launches:ILaunches = {
+        launches: [],
+        totalCount: 0
+      };
+      progress.error = {statusCode: er.code, message: er.message};
+      const preloadedState: AppState = { launches, filters, progress };
 
       res.send(preRenderApp(preloadedState, context, req.url));
     });

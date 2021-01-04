@@ -1,0 +1,32 @@
+
+.LaunchCard {
+    margin: 15px 5px;
+
+    img {
+        padding: 20px;
+    }
+
+    .LaunchInfo {
+        width: 100%;
+        margin-bottom: 0px;
+
+        td {
+            padding-left: 0px;
+        }
+
+        ul {
+            margin-bottom: 0px;
+        }
+    }
+
+    .InfoHeader {
+        font-weight: bold;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .LaunchCard {
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+}
