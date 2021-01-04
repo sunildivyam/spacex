@@ -1,4 +1,4 @@
 export * from './actions';
-export * from './launchs-reducer';
 export * from './reducers';
+export * from './combine-reducers';
 export * from './store';

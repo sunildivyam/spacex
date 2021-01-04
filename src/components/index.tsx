@@ -6,3 +6,4 @@ export * from './LaunchCard/LaunchCard';
 export * from './Loader/Loader';
 export * from './Error/Error';
 export * from './AppFooter/AppFooter';
+export * from './YearFilter/YearFilter';
