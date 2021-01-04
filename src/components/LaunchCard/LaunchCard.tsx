@@ -12,7 +12,7 @@ export const LaunchCard: React.FC<IProps> = ({ launch }: IProps) => (
     <Card.Img variant="top" src={launch.thumbnailImage} />
     <Card.Body>
       <Card.Title className="text-primary">{launch.name}#{launch.flightNumber}</Card.Title>
-      <Table hover className="LaunchInfo">
+      <Table className="LaunchInfo">
         <tbody>
           <tr>
             <td colSpan={launch.missionIds && launch.missionIds.length ? 2 : 0}>

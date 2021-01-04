@@ -5,10 +5,6 @@ import {LaunchesPage} from './LaunchesPage';
 
 describe('<LaunchesPage />', () => {
   test('it should mount', () => {
-    render(<LaunchesPage />);
-    
-    const launchesPage = screen.getByTestId('LaunchesPage');
 
-    expect(launchesPage).toBeInTheDocument();
   });
 });

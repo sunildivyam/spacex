@@ -5,10 +5,5 @@ import { Error } from './Error';
 
 describe('<Error />', () => {
   test('it should mount', () => {
-    render(<Error />);
-
-    const error = screen.getByTestId('Error');
-
-    expect(error).toBeInTheDocument();
   });
 });
