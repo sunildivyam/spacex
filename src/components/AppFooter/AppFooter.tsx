@@ -6,7 +6,7 @@ export function AppFooter() {
 
     return (
         <Navbar bg="dark" variant="dark" className="AppFooter">
-            <strong>Developed by: </strong> <span>Sunil Kumar</span>
+            <strong>Developed by: </strong> <span> Sunil Kumar</span>
         </Navbar>
     );
 }
