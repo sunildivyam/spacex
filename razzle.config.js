@@ -12,5 +12,5 @@ module.exports = {
 
     return config;
   },
-  plugins: ['scss']
+  plugins: ['scss', 'compression']
 }
