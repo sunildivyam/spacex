@@ -66,14 +66,28 @@ git checkout -B <your-branch>
  Please follow steps as mentioned in [Getting Started](#getting-started)
 ### 3) Push your Code to Repository
 * You can not push any changes directly to `main' branch. The only way to contribute is to create a PR.
+
 * Create a PR for your changes. 
-    For each Push in PR, few checks would run by the GitHub Actions, like it runs you tests and build. If this check fails, you would be able to merge your PR to `main` branch.
+    For each Push in PR, few checks would run by the GitHub Actions, like it runs you tests and build. If this check fails, you would not be able to merge your PR to `main` branch.
+    
 * Marge your PR.
     When all checks on the PR are successful, then you can merge your PR to `main` branch.
+
 ### 3) Automatic Deploy the application (CI/CD)
+
 * The deployment is taken care by Github actions CI/CD as soon as a code push is done to `main` branch.
+
 * Github Actions Runs the Checks, like tests and build, if successful then runs a deployment scripts.
+
 * The application gets deployed on [Google firebase Cloud](https://console.firebase.google.com/u/0/project/spacex-ca7de/hosting/main) and is served from there. [SpaceX Program Demo App](https://spacex-ca7de.web.app/).
+
 * Firebase serves hosted node applications via [Serverless Cloud functions as a service](https://console.firebase.google.com/u/0/project/spacex-ca7de/functions/list). So we have created a firebase function `root/index.js`. So this process also deploys our firebase function to the cloud.
+
 * You can monitor the CI/CD pipeline workflows and watch logs and progress. [SpaceX programs Github CI/CD Workflows](https://github.com/sunildivyam/spacex/actions).
+
+## Performance from Lighthouse tool.
+
+[Performance](https://github.com/sunildivyam/spacex/blob/readme/updates/lightouse-perf.png?raw=true)
+
+### Thanks You.
 
