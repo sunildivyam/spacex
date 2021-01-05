@@ -30,7 +30,6 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "serialize-javascript": "^4.0.0",
-    "redux-devtools-extension": "^2.13.8",
     "razzle": "^3.1.8"
   },
   "devDependencies": {
@@ -47,7 +46,6 @@
     "@types/react-router-dom": "^5.1.7",
     "@types/serialize-javascript": "^5.0.0",
     "@types/webpack-env": "^1.16.0",
-    "razzle-plugin-purgecss": "^1.0.1",
     "razzle-plugin-scss": "^3.3.9",
     "typescript": "^3.9.7"
   }
