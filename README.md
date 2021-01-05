@@ -87,7 +87,7 @@ git checkout -B <your-branch>
 
 ## Performance from Lighthouse tool.
 
-[Performance](https://github.com/sunildivyam/spacex/blob/readme/updates/lightouse-perf.png?raw=true)
+![Performance](lightouse-perf.png)
 
 ### Thanks You.
 
