@@ -13,8 +13,7 @@ function getParams(filters: IFilters) {
     const params: any = {
         id: true,
         limit: 100,
-        filter: 'filter=_id,flight_number,mission_name,mission_id,launch_year,rocket/first_stage/cores/land_success,launch_success,links/mission_patch_small'
-    };
+        filter: '_id,flight_number,mission_name,mission_id,launch_year,rocket/first_stage/cores/land_success,launch_success,links/mission_patch_small'    };
     if (selectedYear) {
         params['launch_year'] = selectedYear;
     }
