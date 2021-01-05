@@ -42,6 +42,7 @@
     "@types/webpack-env": "^1.16.0",
     "node-sass": "^4.14.1",
     "razzle": "^3.1.8",
+    "razzle-plugin-purgecss": "^1.0.1",
     "razzle-plugin-scss": "^3.3.9",
     "typescript": "^3.9.7"
   }
