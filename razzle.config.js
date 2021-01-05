@@ -10,12 +10,6 @@ module.exports = {
     return config;
   },
   plugins: [
-    'scss',
-    {
-      name: 'purgecss',
-      options: {
-        // This path options is required for PurgeCSS to analyzed all of our content
-        path: path.resolve(__dirname, 'src/**/*'),
-      },
-    }]
+    'scss'
+  ]
 }

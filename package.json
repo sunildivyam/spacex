@@ -27,8 +27,7 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "serialize-javascript": "^4.0.0",
-    "razzle": "^3.1.8",
-    "redux-devtools-extension": "^2.13.8"
+    "razzle": "^3.1.8"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.8",
@@ -45,7 +44,6 @@
     "@types/serialize-javascript": "^5.0.0",
     "@types/webpack-env": "^1.16.0",
     "razzle-heroku": "^3.0.0",
-    "razzle-plugin-purgecss": "^1.0.1",
     "razzle-plugin-scss": "^3.3.9",
     "typescript": "^3.9.7"
   }
