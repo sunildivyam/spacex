@@ -18,6 +18,8 @@ module.exports = {
       options: {
         // This path options is required for PurgeCSS to analyzed all of yours content
         path: path.resolve(__dirname, 'src/**/*'),
+        only: ['vendor'],
+        rejected: true
       }
     }]
 }
