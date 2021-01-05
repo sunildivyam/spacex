@@ -1,14 +1,12 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { AppState, reducers } from './combine-reducers';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { ILaunches } from '../models';
 
 export const configureStore = (preloadedState: AppState) => {
     const store = createStore(
         reducers,
         preloadedState,
-        composeWithDevTools(applyMiddleware(thunk))
+        applyMiddleware(thunk)
     );
 
     if (module.hot) {
