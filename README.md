@@ -1,6 +1,9 @@
 # SpaceX Program
 
 SpaceX Program is an Universal React Typescript Application.
+
+Application offers the user to explore and filter Space Launch Programs.
+
 ## Demo
 
 To see the Live Production application, please visit [SpaceX Program Demo](https://spacex-ca7de.web.app/)
@@ -65,7 +68,7 @@ git checkout -B <your-branch>
 ### 2) Install and Run Application on local
  Please follow steps as mentioned in [Getting Started](#getting-started)
 ### 3) Push your Code to Repository
-* You can not push any changes directly to `main' branch. The only way to contribute is to create a PR.
+* You can not push any changes directly to `main` branch. The only way to contribute is to create a PR.
 
 * Create a PR for your changes. 
     For each Push in PR, few checks would run by the GitHub Actions, like it runs you tests and build. If this check fails, you would not be able to merge your PR to `main` branch.
@@ -85,9 +88,12 @@ git checkout -B <your-branch>
 
 * You can monitor the CI/CD pipeline workflows and watch logs and progress. [SpaceX programs Github CI/CD Workflows](https://github.com/sunildivyam/spacex/actions).
 
-## Performance from Lighthouse tool.
+## Lighthouse Performance Reports.
+### Mobile
+![Performance](lighthouse-mobile-report.png)
+### Desktop
+![Performance](lighthouse-desktop-report.png)
 
-![Performance](lightouse-perf.png)
 
 ### Thanks You.
 
