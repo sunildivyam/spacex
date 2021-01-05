@@ -11,15 +11,11 @@
     "deploy": "firebase deploy"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.32",
-    "@fortawesome/free-solid-svg-icons": "^5.15.1",
-    "@fortawesome/react-fontawesome": "^0.1.14",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "express": "^4.17.1",
     "firebase-admin": "^9.4.2",
     "firebase-functions": "^3.13.0",
-    "qs": "^6.7.0",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.1",
@@ -29,7 +25,6 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "serialize-javascript": "^4.0.0",
-    "razzle": "^3.1.8"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.8",
@@ -46,6 +41,7 @@
     "@types/serialize-javascript": "^5.0.0",
     "@types/webpack-env": "^1.16.0",
     "razzle-plugin-scss": "^3.3.9",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.7",
+    "razzle": "^3.1.8"
   }
 }
