@@ -33,9 +33,10 @@ export const fetchLaunches = (filters: IFilters) => {
     const LAUNCHES_URL = '/launches';
 
     return new Promise<ILaunches>((resolve, reject) => {
-        const isPreloadedStateAvailable = (typeof window !== 'undefined' && window.__PRELOADED_STATE__ && window.__PRELOADED_STATE__.launches);
-
-        if (false) {
+        // const isPreloadedStateAvailable = (typeof window !== 'undefined' && window.__PRELOADED_STATE__ && window.__PRELOADED_STATE__.launches);
+        // TODO: Serve API result from server preloaded Results.
+        const isPreloadedStateAvailable = false;    // Replace this after actual implementation.
+        if (isPreloadedStateAvailable) {
             resolve(window.__PRELOADED_STATE__.launches);
         } else {
             
