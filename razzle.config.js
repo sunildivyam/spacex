@@ -9,15 +9,11 @@ module.exports = {
       config.output.path = path.resolve(__dirname, './server/build');
       config.output.libraryTarget = 'commonjs2';
     }
-
+    config.performance = {
+      hints: false
+    };
+    
     return config;
   },
-  plugins: ['scss',
-    {
-      name: 'purgecss',
-      options: {
-        // This path options is required for PurgeCSS to analyzed all of yours content
-        path: path.resolve(__dirname, 'src/**/*'),
-      }
-    }]
+  plugins: ['scss']
 }
