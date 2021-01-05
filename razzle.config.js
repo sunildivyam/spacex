@@ -9,7 +9,10 @@ module.exports = {
       config.output.path = path.resolve(__dirname, './server/build');
       config.output.libraryTarget = 'commonjs2';
     }
-
+    config.performance = {
+      hints: false
+    };
+    
     return config;
   },
   plugins: ['scss',
