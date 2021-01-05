@@ -8,7 +8,6 @@
     "build": "tsc -b && razzle build",
     "test": "razzle test --env=jsdom",
     "start:prod": "NODE_ENV=production node build/server.js",
-    "predeploy": "npm run build",
     "deploy": "firebase deploy"
   },
   "dependencies": {
