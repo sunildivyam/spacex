@@ -1,6 +1,6 @@
 
 const generateYearsFilters = (start: number = 2006, end: number = 2020): Array<number> => {
-    return [...new Array(end - start)].map((it, i) => (i + start));
+    return [...new Array((end + 1) - start)].map((it, i) => (i + start));
 }
 
 export interface IFilters {
