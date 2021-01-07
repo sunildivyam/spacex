@@ -76,8 +76,14 @@ const server = express()
   .disable('x-powered-by')
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR!))
   .get('/*', (req: express.Request, res: express.Response) => {
+    const { launch_year, launch_success, land_success } = req.query;
     const context = {};
-    const filters: IFilters = defaultFilters;
+    const filters: IFilters = {...defaultFilters, 
+      selectedYear:  parseInt((launch_year || '').toString(), 10),
+      successfulLaunch:  Boolean((launch_success)),
+      successfulLanding:  Boolean((land_success))
+    };
+    
     const progress: IProgress = {
       error: null,
       loading: false
